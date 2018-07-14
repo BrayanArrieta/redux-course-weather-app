@@ -21,6 +21,24 @@ class WeatherLocation extends Component {
             data: data
         }
     }
+    //method that is executed after the constructor and before that the render
+    componentWillMount = () => {
+      
+    }
+    //method that is executed after the render
+    componentDidMount() {
+        
+    }
+    //method that called before every case to update the view in the webpage
+    componentWillUpdate = () => {
+      
+    }
+    //method that called after every case to update the view in the webpage
+    componentDidUpdate() {
+        
+    }
+    
+    
     handleUpdateClick = () => {
         fetch(urlOpenWeatherMap).then((data) => {
             //convert data to json format
