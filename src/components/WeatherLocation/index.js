@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Location from "./Location";
 import WeatherData from "./WeatherData";
 import transformWeather from './../../services/transformWeather';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './styles.css';
 const location = "Buenos Aires,ar";
 const apiKey = "735eb9e5c8121fa30f4fdcf2cce88101";
@@ -18,22 +19,15 @@ class WeatherLocation extends Component {
     //method that is executed after the constructor and before that the render
     componentWillMount = () => {
         this.handleUpdateClick();
-      
+
     }
     //method that is executed after the render
-    componentDidMount() {
-        
-    }
+    componentDidMount() {}
     //method that called before every case to update the view in the webpage
-    componentWillUpdate = () => {
-      
-    }
+    componentWillUpdate = () => {}
     //method that called after every case to update the view in the webpage
-    componentDidUpdate() {
-        
-    }
-    
-    
+    componentDidUpdate() {}
+
     handleUpdateClick = () => {
         fetch(urlOpenWeatherMap).then((data) => {
             //convert data to json format
@@ -48,8 +42,9 @@ class WeatherLocation extends Component {
     render() {
         return (
             <div className='weatherLocationCont'>
-                <Location city={this.state.city}/>
-                {this.state.data? <WeatherData data={this.state.data}/>: 'Cargando...'}
+                <Location city={this.state.city}/> {this.state.data
+                    ? <WeatherData data={this.state.data}/>
+                    : <CircularProgress size={50} color="secondary"/>}
                 <button onClick={this.handleUpdateClick}>Update</button>
             </div>
         )
