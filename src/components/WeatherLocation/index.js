@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Location from "./Location";
 import WeatherData from "./WeatherData";
-import convert from 'convert-units';
+import transformWeather from './../../services/transformWeather';
 import './styles.css';
 const location = "Buenos Aires,ar";
 const apiKey = "735eb9e5c8121fa30f4fdcf2cce88101";
@@ -21,36 +21,13 @@ class WeatherLocation extends Component {
             data: data
         }
     }
-    getTemperature = (kelvin) => {
-        //convert the string to number format
-        return parseInt(convert(kelvin).from('K').to('C').toFixed(2), 10);
-    }
-
-    getWeatherState = (weather) => {
-        return "sun";
-    }
-
-    getData = (weatherData) => {
-        const {humidity, temp} = weatherData.main;
-        const {speed} = weatherData.wind;
-        const weatherState = this.getWeatherState(this.weather);
-        //Convert the temperature from kelvin o celsius
-        const temperature = this.getTemperature(temp);
-        const data = {
-            temperature: temperature,
-            weatherState: weatherState,
-            humidity: humidity,
-            wind: `${speed} m/s`
-        }
-        return data;
-    }
     handleUpdateClick = () => {
         fetch(urlOpenWeatherMap).then((data) => {
             //convert data to json format
             return data.json();
         }).then((weatherData) => {
             //store the information in a specific format
-            const data = this.getData(weatherData);
+            const data = transformWeather(weatherData);
             //change the value to state constants
             this.setState({data: data})
         }).catch((params) => {})
