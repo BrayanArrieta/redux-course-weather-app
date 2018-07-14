@@ -9,7 +9,7 @@ class LocationList extends Component {
             cities: cities
         }
     }
-    strToComponent = cities => (cities.map(city => (<WeatherLocation city={city}/>)));
+    strToComponent = cities => (cities.map((city) => (<WeatherLocation key={city} city={city}/>)));
     render() {
         return (
             <div>
