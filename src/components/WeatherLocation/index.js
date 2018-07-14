@@ -7,22 +7,17 @@ const location = "Buenos Aires,ar";
 const apiKey = "735eb9e5c8121fa30f4fdcf2cce88101";
 const urlOpenWeatherMap = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
 
-const data = {
-    temperature: 21,
-    weatherState: "cloud",
-    humidity: 80,
-    wind: "10m/s"
-}
 class WeatherLocation extends Component {
     constructor() {
         super();
         this.state = {
             city: "Buenos Aires",
-            data: data
+            data: null
         }
     }
     //method that is executed after the constructor and before that the render
     componentWillMount = () => {
+        this.handleUpdateClick();
       
     }
     //method that is executed after the render
@@ -54,7 +49,7 @@ class WeatherLocation extends Component {
         return (
             <div className='weatherLocationCont'>
                 <Location city={this.state.city}/>
-                <WeatherData data={this.state.data}/>
+                {this.state.data? <WeatherData data={this.state.data}/>: 'Cargando...'}
                 <button onClick={this.handleUpdateClick}>Update</button>
             </div>
         )
