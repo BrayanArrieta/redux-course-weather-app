@@ -1,7 +1,7 @@
 import convert from 'convert-units';
 const getTemperature = (kelvin) => {
     //convert the string to number format
-    return parseInt(convert(kelvin).from('K').to('C').toFixed(2), 10);
+    return Number(convert(kelvin).from('K').to('C').toFixed(2));
 }
 
 const getWeatherState = (weather) => {
