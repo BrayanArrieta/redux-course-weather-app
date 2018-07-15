@@ -11,11 +11,19 @@ class App extends Component {
     render() {
 
         return (
-
-            <div className="App">
-                <LocationList cities={cities} onSelectedLocation={this.handleSelectedLocation}/>
-            </div>
-
+            <Grid>
+                <Row>
+                    Titulo
+                </Row>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <LocationList cities={cities} onSelectedLocation={this.handleSelectedLocation}/>
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <div className='detail'></div>
+                    </Col>
+                </Row>
+            </Grid>
         );
     }
 }
