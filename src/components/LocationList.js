@@ -3,13 +3,25 @@ import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
 
 class LocationList extends Component {
-    constructor({cities}) {
+    constructor({cities, onSelectedLocation}) {
         super();
         this.state = {
-            cities: cities
+            cities: cities,
+            onSelectedLocation: onSelectedLocation
         }
     }
-    strToComponent = cities => (cities.map((city) => (<WeatherLocation key={city} city={city}/>)));
+    handleWeatherLocationClick = (city) => {
+        this
+            .state
+            .onSelectedLocation(city);
+    }
+
+    strToComponent = cities => (cities.map((city) => (<WeatherLocation
+        key={city}
+        city={city}
+        onWeatherLocationClick={() => {
+        this.handleWeatherLocationClick(city);
+    }}/>)));
     render() {
         return (
             <div>
@@ -19,6 +31,7 @@ class LocationList extends Component {
     }
 }
 LocationList.propTypes = {
-    cities: PropTypes.array.isRequired
+    cities: PropTypes.array.isRequired,
+    onSelectedLocation: PropTypes.func.isRequired
 };
 export default LocationList;
