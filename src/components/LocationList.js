@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
-
+import {Grid, Row, Col} from 'react-flexbox-grid';
 class LocationList extends Component {
     constructor({cities, onSelectedLocation}) {
         super();
