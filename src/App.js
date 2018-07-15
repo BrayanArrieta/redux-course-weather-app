@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import ForecastExtended from './components/ForecastExtended';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
 
 class App extends Component {
@@ -37,7 +38,9 @@ class App extends Component {
                     </Col>
                     <Col xs={12} md={6}>
                         <Paper elevation={4}>
-                            <div className='detail'></div>
+                            <div className='detail'>
+                                <ForecastExtended/>
+                            </div>
                         </Paper>
                     </Col>
                 </Row>
