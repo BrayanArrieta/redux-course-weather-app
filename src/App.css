@@ -31,3 +31,10 @@
   height: 100vh;
   width: 100%;
 }
+.flex {
+  flexGrow: 1;
+}
+.menuButton{
+  marginLeft: -12;
+  marginRight: 20;
+}
