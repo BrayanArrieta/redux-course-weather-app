@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+import './styles.css';
 class LocationList extends Component {
     constructor({cities, onSelectedLocation}) {
         super();
@@ -24,7 +24,7 @@ class LocationList extends Component {
     }}/>)));
     render() {
         return (
-            <div>
+            <div className='locationList'>
                 {this.strToComponent(this.state.cities)}
             </div>
         );
