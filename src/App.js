@@ -20,9 +20,9 @@ class App extends Component {
         }
     }
     handleSelectedLocation = (city) => {
-        this.setState({city:city});
+        this.setState({city: city});
     }
-    render() {  
+    render() {
         const {city} = this.state;
         return (
             <Grid>
@@ -45,7 +45,9 @@ class App extends Component {
                     <Col xs={12} md={6}>
                         <Paper elevation={4}>
                             <div className='detail'>
-                                <ForecastExtended city={city}/>
+                                {city
+                                    ? <ForecastExtended city={city}/>
+                                    : 'You should select a city!'}
                             </div>
                         </Paper>
                     </Col>
