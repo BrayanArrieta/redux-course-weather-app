@@ -12,12 +12,18 @@ import ForecastExtended from './components/ForecastExtended';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
 
 class App extends Component {
-    handleSelectedLocation = (city) => {
-        console.log(city);
 
+    constructor() {
+        super();
+        this.state = {
+            city: null
+        }
     }
-    render() {
-
+    handleSelectedLocation = (city) => {
+        this.setState({city:city});
+    }
+    render() {  
+        const {city} = this.state;
         return (
             <Grid>
                 <Row>
@@ -39,7 +45,7 @@ class App extends Component {
                     <Col xs={12} md={6}>
                         <Paper elevation={4}>
                             <div className='detail'>
-                                <ForecastExtended/>
+                                <ForecastExtended city={city}/>
                             </div>
                         </Paper>
                     </Col>
