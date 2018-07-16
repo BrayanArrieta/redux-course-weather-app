@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import './styles.css';
 class ForecastExtended extends Component {
 
     constructor() {
@@ -9,7 +10,10 @@ class ForecastExtended extends Component {
         const {city} = this.props;
         return (
             <div>
-                Extended {city}
+                <h2 className='forecastTitle'>
+                    Extended Forecast Climate for {city}
+                </h2>
+
             </div>
         );
     }
