@@ -16,7 +16,7 @@ class ForecastItem extends Component {
         return (
             <div>
                 <div>
-                    {weekDay} Time: {hour}
+                    <h2>{weekDay} Time: {hour} hs</h2>
                 </div>
                 <WeatherData data={data}/>
             </div>
