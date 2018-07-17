@@ -64,11 +64,11 @@ class App extends Component {
 }
 //return a object with the action identifier and the action to dispatch
 //In addition can receive more functions
-const mapDispatchToPropsActions = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     setCity: value => dispatch(setCity)
 });
 //for connect react and redux
 // convert the class and connect to the store and return a new class with this specifications
-const AppConnected = connect(null, mapDispatchToPropsActions)(App);
+const AppConnected = connect(null, mapDispatchToProps)(App);
 //export the new class connected to the store and redux
 export default AppConnected;
