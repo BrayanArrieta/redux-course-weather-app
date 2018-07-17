@@ -10,7 +10,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ForecastExtended from './components/ForecastExtended';
 import {setCity} from './actions';
-import {store} from './store';
+import {connect} from 'react-redux';
+
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
 
 class App extends Component {
@@ -23,7 +24,9 @@ class App extends Component {
     }
     handleSelectedLocation = (city) => {
         this.setState({city: city});
-        store.dispatch(setCity(city));
+        this
+            .props
+            .setCity(city);
     }
     render() {
         const {city} = this.state;
@@ -59,5 +62,13 @@ class App extends Component {
         );
     }
 }
-
-export default App;
+//return a object with the action identifier and the action to dispatch
+//In addition can receive more functions
+const mapDispatchToPropsActions = (dispatch) => ({
+    setCity: value => dispatch(setCity)
+});
+//for connect react and redux
+// convert the class and connect to the store and return a new class with this specifications
+const AppConnected = connect(null, mapDispatchToPropsActions)(App);
+//export the new class connected to the store and redux
+export default AppConnected;
