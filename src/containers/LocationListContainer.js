@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 class LocationListContainer extends Component {
     handleSelectedLocation = (city) => {
-        this.setState({city: city});
         this
             .props
             .dispatchSetCity(city);
