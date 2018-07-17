@@ -15,7 +15,8 @@ ForecastExtendedContainer.propTypes = {
     forecastData: PropTypes.array
 };
 //get the state with the value that was send as parameter
-const mapStateToProps = (state) => ({city: state.city, forecastData: state.forecastData})
+//receive the state
+const mapStateToProps = ({city,cities}) => ({city: city, forecastData: cities[city] && cities[city].forecastData})
 // for connect react and redux convert the class and connect to the store and
 // return a new class with this specifications export the new class connected to
 // the store and redux
