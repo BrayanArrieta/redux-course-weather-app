@@ -11,11 +11,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ForecastExtended from './components/ForecastExtended';
 import {createStore} from 'redux';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
-
+//store for redux
 const store = createStore(() => {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-// const actionCreator = (value) => {
-//     return {type: 'setCity', value: value};
-// }
+//action creator redux
+const setCity = (value) => ({type: 'setCity', value: value});
 
 class App extends Component {
 
@@ -27,11 +26,7 @@ class App extends Component {
     }
     handleSelectedLocation = (city) => {
         this.setState({city: city});
-        const action = {
-            type: 'setCity',
-            value: city
-        };
-        store.dispatch(action);
+        store.dispatch(setCity(city));
     }
     render() {
         const {city} = this.state;
