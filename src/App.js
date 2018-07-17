@@ -35,9 +35,6 @@ class App extends Component {
                         <Paper elevation={4}>
                             <div className='detail'>
                                 <ForecastExtendedContainer/> 
-                                {/*{city
-                                    ? <ForecastExtendedContainer/>
-                                : null}*/}
                             </div>
                         </Paper>
                     </Col>
