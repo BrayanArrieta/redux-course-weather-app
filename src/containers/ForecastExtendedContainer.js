@@ -4,17 +4,18 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 class ForecastExtendedContainer extends Component {
     render() {
-        const {city} = this.props;
+        const {city, forecastData} = this.props;
         return ((city
-            ? <ForecastExtended city={city}/>
+            ? <ForecastExtended city={city} forecastData={forecastData}/>
             : null));
     }
 }
 ForecastExtendedContainer.propTypes = {
-    city: PropTypes.string.isRequired
+    city: PropTypes.string.isRequired,
+    forecastData: PropTypes.array
 };
 //get the state with the value that was send as parameter
-const mapStateToProps = (state) => ({city: state.city})
+const mapStateToProps = (state) => ({city: state.city, forecastData: state.forecastData})
 // for connect react and redux convert the class and connect to the store and
 // return a new class with this specifications export the new class connected to
 // the store and redux
