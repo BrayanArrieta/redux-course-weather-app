@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import LocationList from './components/LocationList';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,9 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ForecastExtended from './components/ForecastExtended';
-import {setCity} from './actions';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
+import LocationListContainer from './containers/LocationListContainer';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
 
 class App extends Component {
@@ -22,12 +19,7 @@ class App extends Component {
             city: null
         }
     }
-    handleSelectedLocation = (city) => {
-        this.setState({city: city});
-        this
-            .props
-            .dispatchSetCity(city);
-    }
+    
     render() {
         const {city} = this.state;
         return (
@@ -46,7 +38,7 @@ class App extends Component {
                 </Row>
                 <Row>
                     <Col xs={12} md={6}>
-                        <LocationList cities={cities} onSelectedLocation={this.handleSelectedLocation}/>
+                    <LocationListContainer cities={cities} ></LocationListContainer>
                     </Col>
                     <Col xs={12} md={6}>
                         <Paper elevation={4}>
@@ -62,16 +54,4 @@ class App extends Component {
         );
     }
 }
-App.propTypes = {
-    dispatchSetCity:PropTypes.func.isRequired,
-};
-//return a object with the action identifier and the action to dispatch
-//In addition can receive more functions
-const mapDispatchToProps = (dispatch) => ({
-    dispatchSetCity: value => dispatch(setCity(value))
-});
-//for connect react and redux
-// convert the class and connect to the store and return a new class with this specifications
-const AppConnected = connect(null, mapDispatchToProps)(App);
-//export the new class connected to the store and redux
-export default AppConnected;
+export default App;
