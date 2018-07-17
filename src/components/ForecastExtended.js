@@ -9,25 +9,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 class ForecastExtended extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            forecastData: null
-        }
-    }
-    componentDidMount = () => {
-        this.updateCity(this.props.city);
-    }
-    componentWillReceiveProps(nextProps) {
-        if (this.props.city !== nextProps.city) {
-            this.setState({forecastData: null});
-            this.updateCity(nextProps.city);
-        } 
-    }
-
-    updateCity = () => {
-    }
-
     renderForecastItem = (forecastData) => {
         return forecastData.map(item => (<ForecastItem
             key={`${item.weekDay}${item.hour}`}
@@ -40,8 +21,7 @@ class ForecastExtended extends Component {
     }
 
     render() {
-        const {city} = this.props;
-        const {forecastData} = this.state;
+        const {city, forecastData} = this.props;
         return (
             <div>
                 <h2 className='forecastTitle'>
@@ -49,12 +29,13 @@ class ForecastExtended extends Component {
                 </h2>
                 {forecastData
                     ? this.renderForecastItem(forecastData)
-                    : this.renderProgress()}
+                : this.renderProgress()}
             </div>
         );
     }
 }
 ForecastExtended.propTypes = {
-    city: PropTypes.string.isRequired
+    city: PropTypes.string.isRequired,
+    forecastData: PropTypes.array
 };
 export default ForecastExtended;
