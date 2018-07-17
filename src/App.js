@@ -7,21 +7,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ForecastExtended from './components/ForecastExtended';
 import LocationListContainer from './containers/LocationListContainer';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
 
 class App extends Component {
-
-    constructor() {
-        super();
-        this.state = {
-            city: null
-        }
-    }
-    
     render() {
-        const {city} = this.state;
         return (
             <Grid>
                 <Row>
@@ -38,14 +29,15 @@ class App extends Component {
                 </Row>
                 <Row>
                     <Col xs={12} md={6}>
-                    <LocationListContainer cities={cities} ></LocationListContainer>
+                        <LocationListContainer cities={cities}></LocationListContainer>
                     </Col>
                     <Col xs={12} md={6}>
                         <Paper elevation={4}>
                             <div className='detail'>
-                                {city
-                                    ? <ForecastExtended city={city}/>
-                                    : null}
+                                <ForecastExtendedContainer/> 
+                                {/*{city
+                                    ? <ForecastExtendedContainer/>
+                                : null}*/}
                             </div>
                         </Paper>
                     </Col>
