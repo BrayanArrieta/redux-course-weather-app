@@ -9,11 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ForecastExtended from './components/ForecastExtended';
-import {createStore} from 'redux';
-import { setCity } from './actions';
+import {setCity} from './actions';
+import {store} from './store';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
-//store for redux
-const store = createStore(() => {}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 class App extends Component {
 
     constructor() {
