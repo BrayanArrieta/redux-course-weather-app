@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import './styles.css';
 import ForecastItem from './ForecastItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import transformForecast from '../services/transformForecast';
 // const days = [     'Monday',     'Tuesday',     'Wednesday',     'Thursday',
 // 'Friday',     'Saturday',     'Sunday' ] const data = {     temperature: 21,
 // weatherState: "cloud",     humidity: 80,     wind: "10m/s" }
-const apiKey = "735eb9e5c8121fa30f4fdcf2cce88101";
-const apiOpenWeatherMapForecast = 'http://api.openweathermap.org/data/2.5/forecast';
+
 class ForecastExtended extends Component {
 
     constructor() {
@@ -27,14 +25,7 @@ class ForecastExtended extends Component {
         } 
     }
 
-    updateCity = (city) => {
-        const url = `${apiOpenWeatherMapForecast}?q=${city}&appid=${apiKey}`;
-        fetch(url)
-            .then(data => (data.json()))
-            .then(forecastData => {
-                const data = transformForecast(forecastData);
-                this.setState({forecastData: data});
-            });
+    updateCity = () => {
     }
 
     renderForecastItem = (forecastData) => {
