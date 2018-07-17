@@ -11,7 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ForecastExtended from './components/ForecastExtended';
 import {setCity} from './actions';
 import {connect} from 'react-redux';
-
+import PropTypes from 'prop-types';
 const cities = ["Buenos Aires,ar", "Bogotá,col", "San Jose,cr"];
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
         this.setState({city: city});
         this
             .props
-            .setCity(city);
+            .dispatchSetCity(city);
     }
     render() {
         const {city} = this.state;
@@ -62,10 +62,13 @@ class App extends Component {
         );
     }
 }
+App.propTypes = {
+    dispatchSetCity:PropTypes.func.isRequired,
+};
 //return a object with the action identifier and the action to dispatch
 //In addition can receive more functions
 const mapDispatchToProps = (dispatch) => ({
-    setCity: value => dispatch(setCity)
+    dispatchSetCity: value => dispatch(setCity(value))
 });
 //for connect react and redux
 // convert the class and connect to the store and return a new class with this specifications
