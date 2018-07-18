@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import LocationList from '../components/LocationList';
-import {setSelectedCity,setWeather} from '../actions';
+import * as actions from './../actions'
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { getWeatherCities, getCity } from './../reducers';
 class LocationListContainer extends Component {
     componentDidMount() {
@@ -29,10 +30,11 @@ LocationListContainer.propTypes = {
 };
 // return a object with the action identifier and the action to dispatch In
 // addition can receive more functions
-const mapDispatchToProps = (dispatch) => ({
-    dispatchSetSelectedCity: value => dispatch(setSelectedCity(value)),
-    dispatchSetWeather: cities => dispatch(setWeather(cities)),
-});
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+// const mapDispatchToProps = (dispatch) => ({
+//     dispatchSetSelectedCity: value => dispatch(setSelectedCity(value)),
+//     dispatchSetWeather: cities => dispatch(setWeather(cities)),
+// });
 
 const mapStateToProps = state => ({
     citiesWeather: getWeatherCities(state),
