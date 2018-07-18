@@ -1,6 +1,6 @@
 import {SET_FORECAST_DATA, SET_WEATHER_CITY, GET_WEATHER_CITY} from "../actions";
 import {createSelector} from "../../node_modules/reselect";
-
+import {toPairs} from 'lodash';
 export const cities = (state = {}, action) => {
 
     switch (action.type) {
