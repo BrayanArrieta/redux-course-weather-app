@@ -16,8 +16,8 @@ class LocationListContainer extends Component {
             .dispatchSetSelectedCity(city);
     }
     render() {
-        const {cities} = this.props;
-        return (<LocationList cities={cities} onSelectedLocation={this.handleSelectedLocation}/>);
+        const {citiesWeather} = this.props;
+        return (<LocationList cities={citiesWeather} onSelectedLocation={this.handleSelectedLocation}/>);
     }
 }
 LocationListContainer.propTypes = {

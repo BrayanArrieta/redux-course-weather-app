@@ -9,7 +9,8 @@ class LocationList extends Component {
             .onSelectedLocation(city);
     }
 
-    strToComponent = cities => (cities.map((city) => (<WeatherLocation
+    strToComponent = cities => (
+        cities.map((city) => (<WeatherLocation
         key={city.key}
         city={city.name}
         onWeatherLocationClick={() => this.handleWeatherLocationClick(city.name)}
