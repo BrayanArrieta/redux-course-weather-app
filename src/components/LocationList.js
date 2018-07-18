@@ -3,29 +3,22 @@ import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
 import './styles.css';
 class LocationList extends Component {
-    constructor({cities, onSelectedLocation}) {
-        super();
-        this.state = {
-            cities: cities,
-            onSelectedLocation: onSelectedLocation
-        }
-    }
     handleWeatherLocationClick = (city) => {
         this
-            .state
+            .props
             .onSelectedLocation(city);
     }
 
     strToComponent = cities => (cities.map((city) => (<WeatherLocation
-        key={city}
-        city={city}
-        onWeatherLocationClick={() => {
-        this.handleWeatherLocationClick(city);
-    }}/>)));
+        key={city.key}
+        city={city.name}
+        onWeatherLocationClick={() => this.handleWeatherLocationClick(city.name)}
+        data={city.data}/>)));
     render() {
+        const {cities} = this.props;
         return (
             <div className='locationList'>
-                {this.strToComponent(this.state.cities)}
+                {this.strToComponent(cities)}
             </div>
         );
     }
