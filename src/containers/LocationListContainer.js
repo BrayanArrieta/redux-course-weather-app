@@ -3,6 +3,7 @@ import LocationList from '../components/LocationList';
 import {setSelectedCity,setWeather} from '../actions';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { getWeatherCities, getCity } from './../reducers';
 class LocationListContainer extends Component {
     componentDidMount() {
         const { dispatchSetWeather, dispatchSetSelectedCity, cities, city } = this.props;
@@ -21,7 +22,10 @@ class LocationListContainer extends Component {
 }
 LocationListContainer.propTypes = {
     dispatchSetSelectedCity: PropTypes.func.isRequired,
-    cities: PropTypes.array.isRequired
+    dispatchSetWeather: PropTypes.func.isRequired,
+    cities: PropTypes.array.isRequired,
+    citiesWeather: PropTypes.array,
+    city: PropTypes.string.isRequired,
 };
 // return a object with the action identifier and the action to dispatch In
 // addition can receive more functions
@@ -31,7 +35,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = state => ({
-    city: state.city
+    citiesWeather: getWeatherCities(state),
+    city: getCity(state)
 });
 // for connect react and redux convert the class and connect to the store and
 // return a new class with this specifications export the new class connected to
