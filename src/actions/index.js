@@ -1,13 +1,19 @@
 import transformForecast from "../services/transformForecast";
+import transformWeather from "../services/transformWeather";
 
 const apiKey = "735eb9e5c8121fa30f4fdcf2cce88101";
 const apiOpenWeatherMapForecast = 'http://api.openweathermap.org/data/2.5/forecast';
+const apiOpenWeatherMap = 'http://api.openweathermap.org/data/2.5/weather';
 //actions creators redux, the payload its similar to the value
-export const SET_CITY = 'SET_CITY'
-const setCity = (payload) => ({type: SET_CITY, payload: payload});
-
+export const SET_CITY = 'SET_CITY';
 export const SET_FORECAST_DATA = 'SET_FORECAST_DATA';
+export const GET_WEATHER_CITY = 'GET_WEATHER_CITY';
+export const SET_WEATHER_CITY = 'SET_WEATHER_CITY';
+
+const setCity = (payload) => ({type: SET_CITY, payload: payload});
 const setForecastData = (payload) => ({type: SET_FORECAST_DATA, payload: payload})
+const getWeatherCity = payload => ({type: GET_WEATHER_CITY, payload });
+const setWeatherCity = payload => ({type: SET_WEATHER_CITY, payload });
 
 /*
 Select the city and request the information from the API
@@ -26,3 +32,23 @@ export const setSelectedCity = (payload) => {
             });
     }
 }
+
+export const setWeather = payload => {
+
+    return dispatch => {
+        payload.forEach(city => {
+            dispatch(getWeatherCity(city));
+
+            const url = `${apiOpenWeatherMap}?q=${city}&appid=${apiKey}`;
+            fetch(url).then((data) => {
+                return data.json();
+            }).then((weatherData) => {
+                //store the information in a specific format
+                const data = transformWeather(weatherData);
+
+                dispatch(setWeatherCity({city, weather: data}));
+            }).catch((params) => {})
+        });
+    }
+
+};
