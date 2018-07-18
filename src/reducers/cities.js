@@ -11,7 +11,8 @@ export const cities = (state = {}, action) => {
                     ...state,
                     [city]: {
                         ...state[city],
-                        forecastData: forecastData
+                        forecastData: forecastData,
+                        forecastDataDate: new Date()
                     }
                 }
             }
@@ -44,7 +45,6 @@ export const cities = (state = {}, action) => {
 }
 export const getForecastDataFromCities = createSelector((state, city) => state[city] && state[city].forecastData, forecastData => forecastData);
 
-const fromObjToArray = cities => (toPairs(cities).map(([key, value]) => ({ key, name: key, data: value.weather })));
+const fromObjToArray = cities => (toPairs(cities).map(([key, value]) => ({key, name: key, data: value.weather})));
 
-export const getWeatherCities = 
-        createSelector(state => fromObjToArray(state), cities => cities);
+export const getWeatherCities = createSelector(state => fromObjToArray(state), cities => cities);
