@@ -19,10 +19,19 @@ const setWeatherCity = payload => ({type: SET_WEATHER_CITY, payload });
 Select the city and request the information from the API
 */
 export const setSelectedCity = (payload) => {
-    return dispatch => {
+    return (dispatch, getState) => {
         const url = `${apiOpenWeatherMapForecast}?q=${payload}&appid=${apiKey}`;
         dispatch(setCity(payload));
+        
+        const state = getState();
+        const date = state.cities[payload] && state.cities[payload].forecastDataDate;
 
+        const now = new Date();
+
+        if (date && (now - date) < 1 * 60 * 1000) {
+            return; 
+        }
+        
         return fetch(url)
             .then(data => (data.json()))
             .then(weatherData => {
