@@ -6,7 +6,7 @@
     "@material-ui/core": "^1.4.0",
     "@material-ui/icons": "^1.1.0",
     "convert-units": "^2.3.4",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.0",
